@@ -1,0 +1,82 @@
+-------------------------------------------------------------------------------
+Test set: | October 2017 | Australia & New Zealand | Sydney, Australia | 9 - 15 Days |
+-------------------------------------------------------------------------------
+Tests run: 19, Failures: 4, Errors: 1, Skipped: 0, Time elapsed: 101.405 sec <<< FAILURE! - in | October 2017 | Australia & New Zealand | Sydney, Australia | 9 - 15 Days |
+Scenario: Open Princess Website Home Page and search cruises for given input  Time elapsed: 0 sec  <<< ERROR!
+java.lang.IllegalArgumentException: Request URI cannot end with ?
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:105)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:60)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:235)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:247)
+	at com.jayway.restassured.internal.RequestSpecificationImpl.newFilterContext(RequestSpecificationImpl.groovy:1025)
+	at sun.reflect.GeneratedMethodAccessor26.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1210)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1019)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:810)
+	at com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)
+	at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:48)
+	at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:58)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:182)
+	at com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1594)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1210)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1019)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:810)
+	at com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)
+	at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:48)
+	at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:58)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:182)
+	at com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:160)
+	at com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)
+	at step_definitions.SearchAPISteps.validate_all_URL_on_page_if_any_broken(SearchAPISteps.java:70)
+	at ?.And validate all URL on "HOME" page if any broken(PrincessWebSample.feature:8)
+
+And I validate First Cruise "Available"(| June 2017 | Asia | Singapore | 9 - 15 Days |)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.AssertionError: expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:494)
+	at org.testng.Assert.assertFalse(Assert.java:63)
+	at org.testng.Assert.assertFalse(Assert.java:73)
+	at step_definitions.WebHomePageSteps.i_validate_First_Cruise(WebHomePageSteps.java:86)
+	at ?.And I validate First Cruise "Available"(PrincessWebSample.feature:19)
+
+| June 2017 | Asia | Singapore | 9 - 15 Days |  Time elapsed: 0.002 sec  <<< FAILURE!
+java.lang.AssertionError: expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:494)
+	at org.testng.Assert.assertFalse(Assert.java:63)
+	at org.testng.Assert.assertFalse(Assert.java:73)
+	at step_definitions.WebHomePageSteps.i_validate_First_Cruise(WebHomePageSteps.java:86)
+	at ?.And I validate First Cruise "Available"(PrincessWebSample.feature:19)
+
+And I validate First Cruise "Available"(| October 2017 | Australia & New Zealand | Sydney, Australia | 9 - 15 Days |)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.AssertionError: expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:494)
+	at org.testng.Assert.assertFalse(Assert.java:63)
+	at org.testng.Assert.assertFalse(Assert.java:73)
+	at step_definitions.WebHomePageSteps.i_validate_First_Cruise(WebHomePageSteps.java:86)
+	at ?.And I validate First Cruise "Available"(PrincessWebSample.feature:19)
+
+| October 2017 | Australia & New Zealand | Sydney, Australia | 9 - 15 Days |  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.AssertionError: expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:494)
+	at org.testng.Assert.assertFalse(Assert.java:63)
+	at org.testng.Assert.assertFalse(Assert.java:73)
+	at step_definitions.WebHomePageSteps.i_validate_First_Cruise(WebHomePageSteps.java:86)
+	at ?.And I validate First Cruise "Available"(PrincessWebSample.feature:19)
+
