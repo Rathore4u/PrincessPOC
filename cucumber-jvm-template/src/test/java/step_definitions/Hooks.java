@@ -16,6 +16,13 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
+/***
+ * 
+ * @author mrathore 
+ */
+
+//This class contains hook of life cycle for a test run
+
 public class Hooks {
 	public static WebDriver driver;
 
@@ -26,7 +33,7 @@ public class Hooks {
 	 */
 	public void openBrowser() throws MalformedURLException, InterruptedException {
 		System.out.println("Called openBrowser");
-		driver=initDriver("chrome");
+		driver = initDriver("chrome");
 	}
 
 	public WebDriver initDriver(String browserName) throws InterruptedException {
@@ -35,23 +42,25 @@ public class Hooks {
 			driver = new ChromeDriver();
 			driver.manage().deleteAllCookies();
 			driver.manage().window().maximize();
-			//Thread.sleep(5000l);
+			// Thread.sleep(5000l);
 			return driver;
 		} else if (browserName.equals("fireFox")) {
 			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 			capabilities.setCapability("marionette", true);
-			System.setProperty("webdriver.gecko.driver","C:\\XebiaPoc\\tools\\geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", "C:\\XebiaPoc\\tools\\geckodriver.exe");
 			driver = new FirefoxDriver();
 			driver.manage().window().maximize();
 			return driver;
 		} else if (browserName.equals("ie")) {
-			
-			//File file = new File("C:\\XebiaPoc\\tools\\MicrosoftWebDriver.exe");
-		   // System.setProperty("webdriver.edge.driver", file.getAbsolutePath());
-		    //DesiredCapabilities capabilities = DesiredCapabilities.edge();
-		    //driver = new EdgeDriver(capabilities);
+
+			// File file = new
+			// File("C:\\XebiaPoc\\tools\\MicrosoftWebDriver.exe");
+			// System.setProperty("webdriver.edge.driver",
+			// file.getAbsolutePath());
+			// DesiredCapabilities capabilities = DesiredCapabilities.edge();
+			// driver = new EdgeDriver(capabilities);
 			DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);
+			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 			System.setProperty("webdriver.ie.driver", new File("").getAbsolutePath() + "\\IEDriverServer.exe");
 			driver = new InternetExplorerDriver(capabilities);
 			driver.manage().window().maximize();

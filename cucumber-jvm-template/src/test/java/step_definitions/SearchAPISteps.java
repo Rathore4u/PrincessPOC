@@ -12,17 +12,21 @@ import org.openqa.selenium.WebElement;
 
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
-import com.jayway.restassured.response.ValidatableResponse;
-import com.jayway.restassured.specification.RequestSpecification;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+/***
+ * 
+ * @author mrathore 
+ *         
+ */
+
+//Sample class for automating basic feature of a searchResult related rest API of Princess.com
+
 public class SearchAPISteps {
 	public WebDriver driver;
 	private Response response;
-	private ValidatableResponse json;
-	private RequestSpecification request;
 	private String ENDPOINT_PRINCESS_SEARCH = "http://www.princess.com/find/json/getJsonProducts.do";
 
 	public SearchAPISteps() {
@@ -53,25 +57,30 @@ public class SearchAPISteps {
 
 	@Then("^validate all URL on \"(.*?)\" page if any broken$")
 	public void validate_all_URL_on_page_if_any_broken(String arg1) throws Throwable {
-		
+
 		List<String> hrefs = new ArrayList<String>();
-		List<WebElement> UrlTags= driver.findElements(By.tagName("a"));
-		System.out.println("Number of Anchor Tags found on Home page are "+ UrlTags.size());
-		for(int i=0;i<UrlTags.size();i++){
-			if(!UrlTags.get(i).getAttribute("href").equals("")){
-		hrefs.add(UrlTags.get(i).getAttribute("href"));
+		List<WebElement> UrlTags = driver.findElements(By.tagName("a"));
+		System.out.println("Number of Anchor Tags found on Home page are " + UrlTags.size());
+		for (int i = 0; i < UrlTags.size(); i++) {
+			if (!UrlTags.get(i).getAttribute("href").equals("")) {
+				hrefs.add(UrlTags.get(i).getAttribute("href"));
 			}
 		}
-		System.out.println("Number of not null URL found on Home page are "+ hrefs.size());
-		for(String href:hrefs){
-			//System.out.println(href);
-			response = given().
-						when().
-						get(href);
-			if (response.statusCode()!=200){
-				System.out.println("Link "+ href+ " is Broken with status code" + response.statusCode());
+		System.out.println("Number of not null URL found on Home page are " + hrefs.size());
+		for (String href : hrefs) {
+			// System.out.println(href);
+
+			response = given().when().get(href);
+			if (response.statusCode() != 200) {
+				System.out.println("Link " + href + " is Broken with status code" + response.statusCode());
 			}
 		}
+	}
+
+	@Then("^get response header size$")
+	public void get_response_header_size() throws Throwable {
+		response = given().when().get(ENDPOINT_PRINCESS_SEARCH);
+		System.out.println("Response Header Size is " + response.header("Content-Length"));
 	}
 
 }

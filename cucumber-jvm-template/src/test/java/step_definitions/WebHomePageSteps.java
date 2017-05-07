@@ -3,6 +3,8 @@ package step_definitions;
 import static org.testng.Assert.assertFalse;
 import static org.testng.AssertJUnit.assertEquals;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,9 +15,20 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+/***
+ * 
+ * @author mrathore
+ *
+ */
+
+// Sample Web Page Object class for Princess.com
+
 public class WebHomePageSteps {
 	public WebDriver driver;
-
+	public long shortWait=1000L;
+	public long mediumWait = 3000L;
+	public long longWait = 5000L;
+	
 	public WebHomePageSteps() {
 		driver = Hooks.driver;
 	}
@@ -24,15 +37,16 @@ public class WebHomePageSteps {
 	public void i_open_princess_website(String HOME) throws Throwable {
 		String HomePageUrl = "http://www.princess.com";
 		driver.get(HomePageUrl);
-		Thread.sleep(5000l);
+		Thread.sleep(shortWait);
 	}
 
 	@Then("^I validate title and URL$")
 	public void i_print_title_and_URL() throws Throwable {
-		//System.out.println(driver.getTitle());
-		//assertEquals("Cruises – Cruise Vacations – Princess Cruises", driver.getTitle());
+		// System.out.println(driver.getTitle());
+		// assertEquals("Cruises – Cruise Vacations – Princess Cruises",
+		// driver.getTitle());
 		assertEquals("http://www.princess.com/", driver.getCurrentUrl());
-		Thread.sleep(2000l);
+		Thread.sleep(shortWait);
 	}
 
 	@Given("^I scroll to \"(.*?)\" section$")
@@ -40,7 +54,7 @@ public class WebHomePageSteps {
 		// Write code here that turns the phrase above into concrete actions
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,150)", "");
-		Thread.sleep(2000l);
+		Thread.sleep(shortWait);
 	}
 
 	@When("^I select \"(.*?)\" as \"(.*?)\" value$")
@@ -70,20 +84,38 @@ public class WebHomePageSteps {
 			durationSelect.selectByVisibleText(Value);
 			durationElement.click();
 		}
-		Thread.sleep(2000l);
+		Thread.sleep(shortWait);
 	}
 
 	@Then("^I press \"(.*?)\" button$")
 	public void i_press_button(String arg1) throws Throwable {
 		driver.findElement(By.id("view-results")).click();
-		Thread.sleep(5000l);
+		Thread.sleep(shortWait);
 	}
 
 	@Then("^I validate First Cruise \"(.*?)\"$")
 	public void i_validate_First_Cruise(String checkAvailability) throws Throwable {
 		if (checkAvailability.equals("Available")) {
-			Boolean flag = driver.findElement(By.xpath("//div[contains(text(), 'This sail date is SOLD OUT')]")).isDisplayed();
+			Boolean flag = driver.findElement(By.xpath("//div[contains(text(), 'This sail date is SOLD OUT')]"))
+					.isDisplayed();
 			assertFalse(flag);
 		}
 	}
+	
+	
+	@Then("^I open \"(.*?)\" available cruise details$")
+	public void i_open_first_cruise_details(String arg1) throws Throwable {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(0,200)", "");
+		Thread.sleep(shortWait);
+		
+		List<WebElement> cruiseDetails=driver.findElements(By.xpath("//button[contains(@id,'select-cruise')]"));
+		if(arg1.equals("first")){
+		cruiseDetails.get(0).click();
+		Thread.sleep(shortWait);
+		}
+		
+		
+	}
+	
 }
